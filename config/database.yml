@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: lander8
+
+# test:
+#   adapter: postgresql
+#   encoding: utf8
+#   database: wlc-test
+
+production:
+  url:  <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 5 %>

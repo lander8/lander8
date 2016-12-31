@@ -1,0 +1,27 @@
+.analytics {
+	.sites.nav-tabs>li.active>a, 
+	.sites.nav-tabs>li.active>a:focus, 
+	.sites.nav-tabs>li.active>a:hover {
+		border-bottom-color: #ddd;
+	}
+
+	.data-container {
+		border-bottom: 1px solid #ddd;
+		padding: 0px;
+
+		.navigation-left {
+			border: 1px solid #ddd;
+			border-top-width: 0px;
+			border-bottom-width: 0px;
+			padding: 0px;
+			position: absolute;
+			height: 100%;
+		}
+
+		.chart-12 {
+			height: 20vw;
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+	}
+}

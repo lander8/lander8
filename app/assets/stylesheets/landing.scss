@@ -1,0 +1,129 @@
+@import "colors";
+
+/* Begin Layout Styles */
+.navbar {
+	margin-bottom: 0px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.navbar-default .navbar-nav>.open>a, 
+.navbar-default .navbar-nav>.open>a:focus, 
+.navbar-default .navbar-nav>.open>a:hover {
+	background-color: #fff;
+}
+
+.navbar-default {
+	background-color: #fff;
+
+	.navbar-header{
+		padding: 15px;
+
+		.navbar-brand {
+			padding: 0px;
+			height: auto;
+		}
+	}
+
+	.navbar-nav>{
+		li {
+			padding: 13px;
+
+			.dropdown-menu {
+				padding: 10px 0px;
+				border-radius: 4px;
+				min-width: 200px;
+
+				.dropdown-header {
+					padding: 0px 0px 0px 10px;
+
+					h1 {
+						font-size: 14px;
+						margin: 0px;
+					}
+
+					p {
+						font-size: 10px;
+						margin: 0px;
+					}
+				}
+
+				a, a:hover {
+					padding: 5px 10px;
+					background-color: #fff;
+				}
+			}
+
+			a {
+				padding: 0px;
+			}
+		}
+	}
+
+	.sign-in-button {
+		background-color: $blue;
+		border-radius: 2px;
+		padding: 13px 17px;
+		font-weight: bold;
+	}
+}
+
+/* End Layout Styles */
+
+/* Begin Index Styles */
+.index {
+	.section-one {
+		margin-top: 50px;
+		padding: 100px 0px;
+		background: $blue;
+
+		.tagline {
+			color: #fff;
+		}
+
+		.tagline-detail {
+			color: #fff;
+			font-size: 18px;
+			line-height: 180%;
+		}
+
+		form {
+			margin-top: 80px;
+
+			input {
+				margin-bottom: 10px;
+				background: $blue;
+				border: 1px solid #fff;
+				border-radius: 4px;
+				color: #fff;
+			}
+
+			::-webkit-input-placeholder { 
+			  color: #fff;
+			  opacity: 0.8;
+			}
+			:-moz-placeholder { 
+			  color: #fff;
+			  opacity: 0.8;
+			}
+			::-moz-placeholder {
+			  color: #fff;
+			  opacity: 0.8;
+			}
+			:-ms-input-placeholder { 
+			  color: #fff;
+			  opacity: 0.8;
+			}
+
+			button {
+				background: #fff;
+				color: $blue;
+				font-weight: bold;
+				border-radius: 4px;
+			}
+		}
+	}
+}
+/* End Index Styles */
+
+
