@@ -17,11 +17,16 @@
 	background-color: #fff;
 
 	.navbar-header{
-		padding: 15px;
+		padding: 10px;
 
 		.navbar-brand {
 			padding: 0px;
-			height: auto;
+			height: 30px;
+
+			img {
+				height: 100%;
+			  width: auto;
+			}
 		}
 	}
 
@@ -56,16 +61,29 @@
 
 			a {
 				padding: 0px;
+				color: $black100;
+			}
+
+			a:hover {
+				color: $blue100;
 			}
 		}
 	}
 
 	.sign-in-button {
-		background-color: $blue;
+		background-color: $blue100;
 		border-radius: 2px;
 		padding: 13px 17px;
 		font-weight: bold;
 	}
+}
+
+a {
+	color: $black100;
+}
+
+a:hover {
+	color: $blue100;
 }
 
 /* End Layout Styles */
@@ -75,7 +93,7 @@
 	.section-one {
 		margin-top: 50px;
 		padding: 100px 0px;
-		background: $blue;
+		background: $blue100;
 
 		.tagline {
 			color: #fff;
@@ -92,7 +110,7 @@
 
 			input {
 				margin-bottom: 10px;
-				background: $blue;
+				background: $blue100;
 				border: 1px solid #fff;
 				border-radius: 4px;
 				color: #fff;
@@ -117,7 +135,7 @@
 
 			button {
 				background: #fff;
-				color: $blue;
+				color: $blue100;
 				font-weight: bold;
 				border-radius: 4px;
 			}

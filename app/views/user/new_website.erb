@@ -1,0 +1,12 @@
+<div class="container-fluid" style="margin-top: 100px">
+	<div class="row">
+		<div class="container">
+			<form action="/websites/create" method="POST">
+				<%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+				<input type="text" name="name" placeholder="Website Name"/>
+				<input type="text" name="url" placeholder="Website URL"/>
+				<button type="submit">Add Website</button>
+			</form>
+		</div>
+	</div>
+</div>

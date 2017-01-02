@@ -9,12 +9,19 @@ Rails.application.routes.draw do
 	get '/' => 'landing#index'
 
 	# API ROUTES
-	post '/tracking/:site_id/order' => 'api#order_track'
+	get '/api/documentation' => 'api#documentation'
+	post '/api/tracking/order' => 'api#order_track'
 
 	# EMAIL ROUTES
 	post '/newsletter' => 'email#newsletter'
 
 	# INTERNAL ROUTES
 	get '/dashboard' => 'analytics#dashboard'
+
+	# USER ROUTES
+	get '/websites' => 'user#websites'
+	get '/websites/new' => 'user#new_website'
+	post 'websites/create' => 'user#create_website'
+	get '/account' => 'user#account'
 
 end
