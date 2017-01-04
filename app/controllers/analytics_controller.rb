@@ -22,7 +22,7 @@ class AnalyticsController < ApplicationController
 							user_id: order.website_user_id, 
 							created_at: order.order_created_at
 						} 
-					},
+					}
 
 				}
 
