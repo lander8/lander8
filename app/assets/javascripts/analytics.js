@@ -3,20 +3,27 @@ function clearPreviousChart(chartID) {
 	document.getElementById(chartID).innerHTML = "";
 }
 
+// ---------- BEGIN SALES CHART ---------- //
 
-function getCleanData(data) {
-  var dirtyData = {};
+// Format sales for past month
+function monthlySalesData(data) {
+  var rawData = {};
 
+  // Generate the 30 days
+  for (var i = 0; i < 30; i++) {
+    // Super long string formatting
+    rawData[ (moment().subtract(i, 'days').format().substring(0, moment().subtract(i, 'days').format().indexOf("T"))) ] = 0
+  }
+
+  // Loop through all dates in array, add revenue to days that we have data for
   data[current_website].orders.map(function(order) {
-    if ( dirtyData[order.created_at] ){
-      dirtyData[order.created_at] += order.total
-    } else {
-      dirtyData[order.created_at] = order.total
+    if ( order.created_at.substring(0, order.created_at.indexOf("T")) in rawData ){
+      rawData[order.created_at.substring(0, order.created_at.indexOf("T"))] += order.total
     }
   })
 
-  return Object.keys(dirtyData).map(function(key, index) {
-    return {x: new Date(key), y: dirtyData[key]}
+  return Object.keys(rawData).map(function(key, index) {
+    return {x: new Date(key), y: rawData[key]}
   }); 
 }
 
@@ -32,19 +39,27 @@ function plotSalesData(data) {
       	firstAndLast: true
       },
       yAxis: {
-      	title: "Dollars in Sales"
+      	title: "Dollars in Sales",
+        labels: { 
+          formatter: function (datum) { 
+            return '$' + datum 
+          }
+        }
       },
       tooltip: {
       	showTime: 300,
       	animate: true,
-      	distance: 0
+      	distance: 0,
+        formatter: function(d) { 
+          return '$' + d.y + ' in sales on <br>' + moment(d.x).format('dddd, MMMM Do YYYY') 
+        }
       }
     })
     .cartesian()
     .line([
     	{
     		name: "Sales Over Time",
-        data: getCleanData(data) // An array of objects
+        data: monthlySalesData(data) // An array of objects
   	  }
     ])
     .tooltip()
@@ -53,6 +68,11 @@ function plotSalesData(data) {
     document.getElementById('salesChart').innerHTML = "No Data to show."
   }
 }
+
+// ---------- END SALES CHART ---------- //
+
+
+
 
 // Shows conversion data
 function plotConversionData() {

@@ -2,11 +2,11 @@
 	<div class="row section-one">
 		<div class="container">
 			<h1 class="col-xs-12 text-center tagline">Scalable analytics, built for businesses.</h1>
-			<p class="col-xs-8 col-xs-offset-2 text-center tagline-detail">
+			<p class="col-xs-12 col-md-8 col-md-offset-2 text-center tagline-detail">
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla quam vitae lobortis rhoncus. Fusce ac lectus vehicula, ullamcorper justo maximus, volutpat lorem. 
 				Fusce pellentesque, leo sed maximus feugiat, tellus risus ultricies ante, molestie consectetur libero tellus ut sapien. 
 			</p>
-			<form method="POST" action="/newsletter" class="col-xs-8 col-xs-offset-2">
+			<form method="POST" action="/newsletter" class="col-xs-12 col-md-8 col-md-offset-2">
 				<%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
 				<input class="form-control input-lg" type="email" name="email" placeholder="Email Address" required>
 				<button type="submit" class="btn btn-primary btn-lg btn-block">Sign Up To Our Newsletter</button>
