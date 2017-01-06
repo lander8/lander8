@@ -53,6 +53,9 @@ function plotSalesData(data) {
         formatter: function(d) { 
           return '$' + d.y + ' in sales on <br>' + moment(d.x).format('dddd, MMMM Do YYYY') 
         }
+      },
+      line: {
+        animationDirection: "bottom-to-top"
       }
     })
     .cartesian()
@@ -92,6 +95,9 @@ function plotConversionData() {
     	showTime: 300,
     	animate: true,
     	distance: 0
+    },
+    line: {
+      animationDirection: "bottom-to-top"
     }
   })
   .cartesian()

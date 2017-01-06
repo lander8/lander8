@@ -1,10 +1,11 @@
 <div class="container-fluid index">
 	<div class="row section-one">
 		<div class="container">
-			<h1 class="col-xs-12 text-center tagline">Scalable analytics, built for businesses.</h1>
+			<h1 class="col-xs-12 text-center tagline">
+				<%= t 'copy.landing.section_one.header' %>
+			</h1>
 			<p class="col-xs-12 col-md-8 col-md-offset-2 text-center tagline-detail">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla quam vitae lobortis rhoncus. Fusce ac lectus vehicula, ullamcorper justo maximus, volutpat lorem. 
-				Fusce pellentesque, leo sed maximus feugiat, tellus risus ultricies ante, molestie consectetur libero tellus ut sapien. 
+				 <%= t 'copy.landing.section_one.sub_header' %>
 			</p>
 			<form method="POST" action="/newsletter" class="col-xs-12 col-md-8 col-md-offset-2">
 				<%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
@@ -15,7 +16,10 @@
 	</div>
 	<div class="row section-two">
 		<div class="container">
-			<h1 class="col-xs-12 text-center">Hello.</h1>
+			<h1 class="col-xs-12 text-center"><%= t 'copy.landing.section_two.header' %></h1>
+			<p class="col-xs-12 col-md-8 col-md-offset-2 text-center tagline-detail">
+				 <%= t 'copy.landing.section_two.sub_header' %>
+			</p>
 		</div>
 	</div>
 </div>

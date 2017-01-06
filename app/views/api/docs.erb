@@ -3,46 +3,34 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
-					<h1>Documentation</h1>
+					<h1><%= t 'copy.documentation.page_header' %></h1>
 					<hr />
 					<p>
-						Lander8 is a scalable analytics tool built for businesses. We make it easy to measure and stay on top of your business' analytics and 
-						provide a solution that is easy to integrate while still being relatively powerful. Here's how you can get started:
+						<%= t 'copy.documentation.page_description' %>
 					</p>
 				</div>
 				<div class="col-xs-12" id="integration">
-					<h3>Integration</h3>
+					<h3><%= t 'copy.documentation.section_one.title' %></h3>
 					<hr />
 					<p>
-						Once you've added your new website to your profile, you'll be able to manage it from <a href="/websites">your "websites" page</a>.
-						When you click "Manage" on the website you want to integrate with, you'll see information about your website. Among this information
-						is your <em>API key</em>. This key is unique to you and your website. <b> Do not share it with anyone</b>, anyone with access to this
-						key has direct access to information and analytics regarding your website.
+						<%= t 'copy.documentation.section_one.description.part_one' %>
 					</p>
 					<p>
-						Use your API key to send JSON requests to our API endpoints. In order to send data to, or get data from lander8, you must include this api key in your request using they key
-						<code>"api_key"</code>. Failure to provide a valid API key will result in a <code>401 Unauthorized</code> response error code. A very simple request with the minimum required
-						information should look something similar to:
+						<%= t 'copy.documentation.section_one.description.part_two' %>
 					</p>
 					<pre>//lander8.com/api/some-endpoint?api_key=YOUR_API_KEY</pre>
 				</div>
 				<div class="col-xs-12" id="orders">
-					<h3>Tracking Orders</h3>
+					<h3><%= t 'copy.documentation.section_two.title' %></h3>
 					<hr />
-					<h4>Endpoint: <code>/api/tracking/order</code></h4>
+					<h4>Endpoint: <code><%= t 'copy.documentation.section_two.endpoint' %></code></h4>
 					<p>
-						Tracking orders is fairly simple. There are a few required fields that must be sent in order to successfully register an order on lander8.
-						The following are fields that you can apply to your order:
+						<%= t 'copy.documentation.section_two.description' %>
 
 						<ul>
-							<li><code>api_key (required for all API interactions)</code></li>
-							<li><code>total (required)</code></li>
-							<li><code>subtotal (required)</code></li>
-							<li><code>tax_total (required)</code></li>
-							<li><code>shipping_total (required)</code></li>
-							<li><code>user_id (required)</code></li>
-							<li><code>order_id (required)</code></li>
-							<li><code>created_at (required)</code></li>
+							<% t('copy.documentation.section_two.parameters').each do |text| %>
+								<li><code><%= text %></code></li>
+							<% end %>
 						</ul>
 
 						This information is used to populate your revenue data chart.

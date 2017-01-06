@@ -95,9 +95,9 @@
   padding: 4px 8px;
   font: 10px sans-serif;
   line-height: 16px;
-  background: #555555;
+  background: rgba(34, 34, 34, 1);
   border: solid 1px transparent;
-  border-radius: 8px;
+  border-radius: 3px;
   pointer-events: none;
   transition: all 0.05s ease-out;
 }
@@ -113,9 +113,9 @@
   white-space: nowrap;
 }
 .s-1 {
-  color: #2477b3;
+  color: rgba(7, 98, 242, 1);
   stroke: #2477b3;
-  fill: #2477b3;
+  fill: #fff;
 }
 .s-1.line,
 .s-1 .line {

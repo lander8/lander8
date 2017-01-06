@@ -1,23 +1,31 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  copy:
+    landing:
+      section_one:
+        header: "Scalable Analytics, built for businesses."
+        sub_header: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla quam vitae lobortis rhoncus. Fusce ac lectus vehicula, ullamcorper justo maximus, volutpat lorem. Fusce pellentesque, leo sed maximus feugiat, tellus risus ultricies ante, molestie consectetur libero tellus ut sapien."
+      section_two:
+        header: "Hello."
+        sub_header: ""
+    documentation:
+      page_header: "Documentation"
+      page_description: "Lander8 is a scalable analytics tool built for businesses. We make it easy to measure and stay on top of your business' analytics and provide a solution that is easy to integrate while still being relatively powerful. Here's how you can get started:"
+      section_one: 
+        title: "Integration"
+        description: 
+          part_one: "Once you've added your new website to your profile, you'll be able to manage it from your \"websites\" page. When you click \"Manage\" on the website you want to integrate with, you'll see information about your website. Among this information is your API key. This key is unique to you and your website. Do not share it with anyone, anyone with access to this key has direct access to information and analytics regarding your website."
+          part_two: "Use your API key to send JSON requests to our API endpoints. In order to send data to, or get data from lander8, you must include this api key in your request using they key \"api_key\". Failure to provide a valid API key will result in a 401 Unauthorized response error code. A very simple request with the minimum required information should look something similar to:"
+      section_two:
+        title: "Tracking Orders"
+        endpoint: "/api/tracking/order"
+        description: "Tracking orders is fairly simple. There are a few required fields that must be sent in order to successfully register an order on lander8. The following are fields that you can apply to your order:"
+        parameters: 
+          - "api_key (required for all API interactions)"
+          - "total (required)"
+          - "subtotal (required)"
+          - "tax_total (required)"
+          - "shipping_total (required)"
+          - "user_id (required)"
+          - "order_id (required)"
+          - "created_at (required)"
+
