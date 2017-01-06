@@ -5,12 +5,12 @@ function clearPreviousChart(chartID) {
 
 // ---------- BEGIN SALES CHART ---------- //
 
-// Format sales for past month
-function monthlySalesData(data) {
+// Format sales for a given time
+function generateSalesData(data, number_of_days) {
   var rawData = {};
 
   // Generate the 30 days
-  for (var i = 0; i < 30; i++) {
+  for (var i = 0; i < number_of_days; i++) {
     // Super long string formatting
     rawData[ (moment().subtract(i, 'days').format().substring(0, moment().subtract(i, 'days').format().indexOf("T"))) ] = 0
   }
@@ -28,7 +28,7 @@ function monthlySalesData(data) {
 }
 
 // Shows basic sales data for the past 30 days
-function plotSalesData(data) {
+function plotSalesData(data, number_of_days) {
 	clearPreviousChart('salesChart');
   try {
   	new Contour({
@@ -62,7 +62,7 @@ function plotSalesData(data) {
     .line([
     	{
     		name: "Sales Over Time",
-        data: monthlySalesData(data) // An array of objects
+        data: generateSalesData(data, number_of_days) // An array of objects
   	  }
     ])
     .tooltip()
