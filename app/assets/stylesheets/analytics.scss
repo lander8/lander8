@@ -16,6 +16,14 @@
 			padding: 0px;
 			position: absolute;
 			height: 100%;
+
+			.nav {
+				li {
+					a {
+						border-radius: 0px;
+					}
+				}
+			}
 		}
 
 		.chart-12 {
@@ -26,6 +34,15 @@
 
 		.chart-nav {
 			display: none;
+
+			ul {
+				li {
+					a, a:hover, a:active {
+						border-radius: 0px;
+						border-top-width: 0px !important;
+					}
+				}
+			}
 		}
 
 		.chart-nav.active {

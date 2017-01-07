@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
 	skip_before_action :verify_authenticity_token
-	before_action :find_website_by_api_key, :except => [:documentation]
+	before_action :find_website_by_api_key, :except => [:documentation, :tracking_pixel_hit]
 
 	def order_track
 		o = Order.create(
@@ -22,6 +22,15 @@ class ApiController < ApplicationController
 
 	def documentation
 		render 'docs', layout: 'landing'
+	end
+
+	def tracking_pixel_hit
+		View.create(
+			website_id: params[:website_id],
+			website_user_id: params[:website_user_id] || nil
+		)
+
+		send_file 'public/tracking/pixel.png', type: 'image/png'
 	end
 
 	private

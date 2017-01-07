@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
 	# API ROUTES
 	get '/api/documentation' => 'api#documentation'
+	get '/api/tracking/pixel' => 'api#tracking_pixel_hit'
 	post '/api/tracking/order' => 'api#order_track'
+
 
 	# EMAIL ROUTES
 	post '/newsletter' => 'email#newsletter'
