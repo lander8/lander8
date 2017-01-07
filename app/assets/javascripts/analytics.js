@@ -1,24 +1,89 @@
+$(document).ready(function(){
+  plotSalesData(30);
+
+  // -- Sales Click Events -- //
+  $('#salesChartShow').click(function(){
+    setActiveInGroup(this);
+    setActiveInGroup('.chart-nav.sales');
+    setActiveInGroup('#sales30day');
+    plotSalesData(30);
+  });
+
+  $('#sales30day').click(function(){
+    setActiveInGroup(this);
+    plotSalesData(30);
+  });
+
+  $('#sales7day').click(function(){
+    setActiveInGroup(this);
+    plotSalesData(7);
+  });
+
+  $('#sales1day').click(function(){
+    setActiveInGroup(this);
+    plotSalesData(1);
+  });
+
+  // -- Conversions Click Events -- //
+  $('#conversionChartShow').click(function(){
+    setActiveInGroup(this);
+    setActiveInGroup('.chart-nav.conversions');
+    plotConversionData();
+  });
+});
+
 // Clears the chart completely (for use before adding a chart in its place)
 function clearPreviousChart(chartID) {
 	document.getElementById(chartID).innerHTML = "";
 }
 
+// Sets any given element as the active one in the group
+function setActiveInGroup(element) {
+  $(element).siblings().removeClass("active");
+  $(element).addClass('active');
+}
+
 // ---------- BEGIN SALES CHART ---------- //
 
+// Get all sales data
+function fetchSalesData(){
+  var result;
+
+  $.ajax({
+    async: false,
+    type: 'GET',
+    url: '/analytics/sales',
+    success: function( data ){
+      result = data;
+    }
+  })
+
+  return result;
+}
+
 // Format sales for a given time
-function generateSalesData(data, number_of_days) {
+function generateSalesData(number_of_days) {
+  var data = fetchSalesData();
   var rawData = {};
 
   // Generate the 30 days
   for (var i = 0; i < number_of_days; i++) {
     // Super long string formatting
-    rawData[ (moment().subtract(i, 'days').format().substring(0, moment().subtract(i, 'days').format().indexOf("T"))) ] = 0
+    if (number_of_days > 1) {
+      rawData[ (moment().subtract(i, 'days').format().substring(0, moment().subtract(i, 'days').format().indexOf("T"))) ] = 0
+    } else {
+      for (var j = 0; j < 24; j++) {
+        rawData[ (moment().subtract(j, 'hours').format("YYYY-MM-DDTHH:00:00")) ] = 0
+      }
+    }
   }
 
   // Loop through all dates in array, add revenue to days that we have data for
   data[current_website].orders.map(function(order) {
-    if ( order.created_at.substring(0, order.created_at.indexOf("T")) in rawData ){
+    if (number_of_days > 1 && order.created_at.substring(0, order.created_at.indexOf("T")) in rawData) {
       rawData[order.created_at.substring(0, order.created_at.indexOf("T"))] += order.total
+    } else if (moment(order.created_at).format("YYYY-MM-DDTHH:00:00") in rawData) {
+      rawData[moment(order.created_at).format("YYYY-MM-DDTHH:00:00")] += order.total
     }
   })
 
@@ -28,7 +93,7 @@ function generateSalesData(data, number_of_days) {
 }
 
 // Shows basic sales data for the past 30 days
-function plotSalesData(data, number_of_days) {
+function plotSalesData(number_of_days) {
 	clearPreviousChart('salesChart');
   try {
   	new Contour({
@@ -51,7 +116,7 @@ function plotSalesData(data, number_of_days) {
       	animate: true,
       	distance: 0,
         formatter: function(d) { 
-          return '$' + d.y + ' in sales on <br>' + moment(d.x).format('dddd, MMMM Do YYYY') 
+          return '$' + d.y + ' in sales on <br>' + moment(d.x).format('dddd, MMMM Do YYYY ( HH:mm )') 
         }
       },
       line: {
@@ -62,7 +127,7 @@ function plotSalesData(data, number_of_days) {
     .line([
     	{
     		name: "Sales Over Time",
-        data: generateSalesData(data, number_of_days) // An array of objects
+        data: generateSalesData(number_of_days) // An array of objects
   	  }
     ])
     .tooltip()

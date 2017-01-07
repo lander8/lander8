@@ -23,5 +23,13 @@
 			padding-top: 20px;
 			padding-bottom: 20px;
 		}
+
+		.chart-nav {
+			display: none;
+		}
+
+		.chart-nav.active {
+			display: inline-block;
+		}
 	}
 }

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
 	# INTERNAL ROUTES
 	get '/dashboard' => 'analytics#dashboard'
+	get '/analytics/sales' => 'analytics#salesDataEndpoint'
 
 	# USER ROUTES
 	get '/websites' => 'user#websites'

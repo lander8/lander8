@@ -16,7 +16,7 @@ Website.create(
 )
 
 # Create a bunch of orders for our test user
-for i in 0..300 
+for i in 0..500 
 	Order.create(
 		total: rand() * rand(5..100),
 		subtotal: rand() * rand(5..100),
@@ -24,7 +24,7 @@ for i in 0..300
 		shipping_total: rand() * rand(5..100),
 		website_user_id: rand(1..300),
 		website_order_id: i,
-		order_created_at: rand(Time.parse("{2015-1-1}")..Time.parse("{#{Time.now.year}-#{Time.now.month}-#{Time.now.day}}")),
+		order_created_at: rand(Time.parse("{2016-12-1}")..Time.parse("{#{Time.now.year}-#{Time.now.month}-#{Time.now.day}}")),
 		website_id: Website.where(user_id: User.where(email: "test@lander8.com").last.id).last.id
 	)
 end

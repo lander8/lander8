@@ -7,11 +7,6 @@
 			<p class="col-xs-12 col-md-8 col-md-offset-2 text-center tagline-detail">
 				 <%= t 'copy.landing.section_one.sub_header' %>
 			</p>
-			<form method="POST" action="/newsletter" class="col-xs-12 col-md-8 col-md-offset-2">
-				<%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
-				<input class="form-control input-lg" type="email" name="email" placeholder="Email Address" required>
-				<button type="submit" class="btn btn-primary btn-lg btn-block">Sign Up To Our Newsletter</button>
-			</form>
 		</div>
 	</div>
 	<div class="row section-two">
