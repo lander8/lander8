@@ -28,5 +28,22 @@ class AnalyticsController < ApplicationController
 		render json: data
 	end
 
+	def siteTrafficEndpoint
+		data = {}
+
+		current_user.websites.each do |website|
+			data[website.name] = {
+				traffic: website.views.map{ |view| 
+					{
+						user_id: view.website_user_id, 
+						created_at: view.created_at
+					} 
+				}
+			}
+		end
+
+		render json: data
+	end
+
 
 end

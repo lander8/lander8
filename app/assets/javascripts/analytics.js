@@ -30,6 +30,28 @@ $(document).ready(function(){
     setActiveInGroup('.chart-nav.conversions');
     plotConversionData();
   });
+
+  // -- Site Traffic Click Events -- //
+  $('#siteTrafficChartShow').click(function(){
+    setActiveInGroup(this);
+    setActiveInGroup('.chart-nav.site-traffic');
+    plotSiteTrafficData(30);
+  });
+
+  $('#siteTraffic30day').click(function(){
+    setActiveInGroup(this);
+    plotSiteTrafficData(30);
+  });
+
+  $('#siteTraffic7day').click(function(){
+    setActiveInGroup(this);
+    plotSiteTrafficData(7);
+  });
+
+  $('#siteTraffic1day').click(function(){
+    setActiveInGroup(this);
+    plotSiteTrafficData(1);
+  });
 });
 
 // Clears the chart completely (for use before adding a chart in its place)
@@ -92,7 +114,7 @@ function generateSalesData(number_of_days) {
   }); 
 }
 
-// Shows basic sales data for the past 30 days
+
 function plotSalesData(number_of_days) {
 	clearPreviousChart('salesChart');
   try {
@@ -138,6 +160,95 @@ function plotSalesData(number_of_days) {
 }
 
 // ---------- END SALES CHART ---------- //
+
+// ---------- BEGIN SITE TRAFFIC CHART --------- //
+
+// Get all site traffic data
+function fetchSiteTrafficData(){
+  var result;
+
+  $.ajax({
+    async: false,
+    type: 'GET',
+    url: '/analytics/site-traffic',
+    success: function( data ){
+      result = data;
+    }
+  })
+
+  return result;
+}
+
+function generateSiteTrafficData(number_of_days) {
+  var data = fetchSiteTrafficData();
+  var rawData = {};
+
+  // Generate the 30 days
+  for (var i = 0; i < number_of_days; i++) {
+    // Super long string formatting
+    if (number_of_days > 1) {
+      rawData[ (moment().subtract(i, 'days').format().substring(0, moment().subtract(i, 'days').format().indexOf("T"))) ] = 0
+    } else {
+      for (var j = 0; j < 24; j++) {
+        rawData[ (moment().subtract(j, 'hours').format("YYYY-MM-DDTHH:00:00")) ] = 0
+      }
+    }
+  }
+
+  // Loop through all dates in array, add revenue to days that we have data for
+  data[current_website].traffic.map(function(view) {
+    if (number_of_days > 1 && view.created_at.substring(0, view.created_at.indexOf("T")) in rawData) {
+      rawData[view.created_at.substring(0, view.created_at.indexOf("T"))]++
+    } else if (moment(view.created_at).format("YYYY-MM-DDTHH:00:00") in rawData) {
+      rawData[moment(view.created_at).format("YYYY-MM-DDTHH:00:00")]++
+    }
+  })
+
+  return Object.keys(rawData).map(function(key, index) {
+    return {x: new Date(key), y: rawData[key]}
+  }); 
+}
+
+function plotSiteTrafficData(number_of_days) {
+  clearPreviousChart('salesChart');
+  // try {
+    new Contour({
+      el: '#salesChart',
+      xAxis: { 
+        title: "Time",
+        type: 'time',
+        firstAndLast: true
+      },
+      yAxis: {
+        title: "Number of Views"
+      },
+      tooltip: {
+        showTime: 300,
+        animate: true,
+        distance: 0,
+        formatter: function(d) { 
+          return d.y + ' total views on <br>' + moment(d.x).format('dddd, MMMM Do YYYY ( HH:mm )') 
+        }
+      },
+      line: {
+        animationDirection: "bottom-to-top"
+      }
+    })
+    .cartesian()
+    .line([
+      {
+        name: "Views Over Time",
+        data: generateSiteTrafficData(number_of_days) // An array of objects
+      }
+    ])
+    .tooltip()
+    .render();
+  // } catch(e) {
+  //   document.getElementById('salesChart').innerHTML = "No Data to show."
+  // }
+}
+
+// ---------- END SITE TRAFFIC CHART --------- //
 
 
 
