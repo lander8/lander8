@@ -1,8 +1,24 @@
+@import 'style_constants';
+
 .analytics {
 	.sites.nav-tabs>li.active>a, 
 	.sites.nav-tabs>li.active>a:focus, 
 	.sites.nav-tabs>li.active>a:hover {
 		border-bottom-color: #ddd;
+	}
+
+	.beta-note {
+		background: $blue25;
+		border: 1px solid $blue50;
+		margin-top: 20px;
+		color: $blue100;
+		padding-top: 10px;
+		padding-bottom: 10px;
+
+		a {
+			color: $black100;
+			text-decoration: underline;
+		}
 	}
 
 	.data-container {
@@ -21,6 +37,12 @@
 				li {
 					a {
 						border-radius: 0px;
+					}
+				}
+
+				li.active {
+					a {
+						background: $blue100;
 					}
 				}
 			}

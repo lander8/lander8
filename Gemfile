@@ -24,8 +24,11 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
 
+gem 'mandrill-api'
+
 group :development, :test do
   gem 'pry'
+  gem 'dotenv-rails'
 end
 
 group :development do

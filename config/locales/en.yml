@@ -28,3 +28,9 @@ en:
           - "user_id (required)"
           - "order_id (required)"
           - "created_at (required)"
+      section_three:
+        title: "Tracking Site Traffic"
+        description: "Each website registered with lander8 recieves a tracking pixel (a 1x1 transparent .PNG image) that must be placed in the <body> tag of every page of the website in order to track views. The tracking pixel comes with parameters in its URL that help to provide more information on each visit. Accepted parameters are as follows:"
+        parameters:
+          - "website_id (required)"
+          - "user_id (optional)" 

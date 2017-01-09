@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 	get '/analytics/sales' => 'analytics#salesDataEndpoint'
 	get '/analytics/site-traffic' => 'analytics#siteTrafficEndpoint'
 
+	post '/report-bug' => 'application#report_bug'
+
 	# USER ROUTES
 	get '/websites' => 'user#websites'
 	get '/websites/new' => 'user#new_website'

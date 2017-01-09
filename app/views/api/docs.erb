@@ -9,32 +9,52 @@
 						<%= t 'copy.documentation.page_description' %>
 					</p>
 				</div>
-				<div class="col-xs-12" id="integration">
-					<h3><%= t 'copy.documentation.section_one.title' %></h3>
-					<hr />
-					<p>
-						<%= t 'copy.documentation.section_one.description.part_one' %>
-					</p>
-					<p>
-						<%= t 'copy.documentation.section_one.description.part_two' %>
-					</p>
-					<pre>//lander8.com/api/some-endpoint?api_key=YOUR_API_KEY</pre>
+				<div class="col-xs-3">
+					<div class="col-xs-12" style="border: 1px solid #d1d1d1;">
+						<a href="#integration" class="row">Integration</a>
+						<a href="#orders" class="row">Orders</a>
+						<a href="#visits" class="row">Tracking Pixel</a>
+					</div>
 				</div>
-				<div class="col-xs-12" id="orders">
-					<h3><%= t 'copy.documentation.section_two.title' %></h3>
-					<hr />
-					<h4>Endpoint: <code><%= t 'copy.documentation.section_two.endpoint' %></code></h4>
-					<p>
-						<%= t 'copy.documentation.section_two.description' %>
-
-						<ul>
-							<% t('copy.documentation.section_two.parameters').each do |text| %>
-								<li><code><%= text %></code></li>
-							<% end %>
-						</ul>
-
-						This information is used to populate your revenue data chart.
-					</p>
+				<div class="col-xs-9">
+					<div class="row">
+						<div class="col-xs-12" id="integration">
+							<h3><%= t 'copy.documentation.section_one.title' %></h3>
+							<hr />
+							<p>
+								<%= t 'copy.documentation.section_one.description.part_one' %>
+							</p>
+							<p>
+								<%= t 'copy.documentation.section_one.description.part_two' %>
+							</p>
+							<pre>//lander8.com/api/some-endpoint?api_key=YOUR_API_KEY</pre>
+						</div>
+						<div class="col-xs-12" id="orders">
+							<h3><%= t 'copy.documentation.section_two.title' %></h3>
+							<hr />
+							<h4>Endpoint: <code><%= t 'copy.documentation.section_two.endpoint' %></code></h4>
+							<p>
+								<%= t 'copy.documentation.section_two.description' %>
+								<ul>
+									<% t('copy.documentation.section_two.parameters').each do |text| %>
+										<li><code><%= text %></code></li>
+									<% end %>
+								</ul>
+							</p>
+						</div>
+						<div class="col-xs-12" id="visits">
+							<h3><%= t 'copy.documentation.section_three.title' %></h3>
+							<hr />
+							<p>
+								<%= t 'copy.documentation.section_three.description' %>
+								<ul>
+									<% t('copy.documentation.section_three.parameters').each do |text| %>
+										<li><code><%= text %></code></li>
+									<% end %>
+								</ul>
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
