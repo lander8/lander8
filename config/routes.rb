@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout', :sign_up => 'register'}, :controllers => { registrations: 'registrations' }
+  devise_for :users, 
+  	:path => '', 
+  	:path_names => {
+  		:sign_in => 'login', 
+  		:sign_out => 'logout', 
+  		:sign_up => 'register'
+  	}, 
+  	:controllers => { 
+  		registrations: 'registrations'
+  	}
   
   devise_scope :user do
 	  get "/login" => "devise/sessions#new"
@@ -12,10 +21,6 @@ Rails.application.routes.draw do
 	get '/api/documentation' => 'api#documentation'
 	get '/api/tracking/pixel' => 'api#tracking_pixel_hit'
 	post '/api/tracking/order' => 'api#order_track'
-
-
-	# EMAIL ROUTES
-	post '/newsletter' => 'email#newsletter'
 
 	# INTERNAL ROUTES
 	get '/dashboard' => 'analytics#dashboard'
@@ -29,6 +34,6 @@ Rails.application.routes.draw do
 	get '/websites' => 'user#websites'
 	get '/websites/new' => 'user#new_website'
 	post 'websites/create' => 'user#create_website'
-	get '/account' => 'user#account'
+	get '/settings' => 'user#settings'
 
 end

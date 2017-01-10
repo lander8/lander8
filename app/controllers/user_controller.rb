@@ -1,6 +1,8 @@
 class UserController < ApplicationController
+	before_action :authenticate_user!
 
-	def account
+	def settings
+		render 'settings', layout: 'landing'
 	end
 
 	def websites

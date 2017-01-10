@@ -42,7 +42,9 @@
 
 				li.active {
 					a {
-						background: $blue100;
+						background: $blue25;
+						color: $blue100;
+						font-weight: bold;
 					}
 				}
 			}

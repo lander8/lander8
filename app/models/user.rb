@@ -5,8 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :websites
+	after_create :send_welcome_email
 
-  after_create :send_welcome_email
+	def account
+		render 'settings'
+	end
 
   def send_welcome_email
   	UserMailer.welcome(id).deliver

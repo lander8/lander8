@@ -12,4 +12,5 @@ class ApplicationController < ActionController::Base
 	def send_contact
 		AdminMailer.send_contact_email(current_user.id, params["contact-body"]).deliver
 	end
+	
 end

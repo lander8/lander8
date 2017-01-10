@@ -2,7 +2,6 @@ class AnalyticsController < ApplicationController
 	before_action :authenticate_user!
 
 	def dashboard
-		# @data = getData()
 		render 'index'
 	end
 
@@ -45,5 +44,15 @@ class AnalyticsController < ApplicationController
 		render json: data
 	end
 
+	# Generates a CSV and sends it to the user
+	# TODO: make this useful
+	def generate_csv
+		data = CSV.generate do |csv|
+		  csv << ["row", "of", "CSV", "data"]
+		  csv << ["another", "row"]
+		end
+
+		send_data data, :type=> 'text/csv', :filename => 'your_data.csv'
+	end
 
 end
