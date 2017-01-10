@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
 	def report_bug
 		AdminMailer.send_bug_report(current_user.id, params["report-body"]).deliver
 	end
+
+	def send_contact
+		AdminMailer.send_contact_email(current_user.id, params["contact-body"]).deliver
+	end
 end

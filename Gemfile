@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
 
+gem 'httparty'
+
 gem 'mandrill-api'
 
 group :development, :test do

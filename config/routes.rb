@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 	get '/analytics/site-traffic' => 'analytics#siteTrafficEndpoint'
 
 	post '/report-bug' => 'application#report_bug'
+	post '/send-contact' => 'application#send_contact'
 
 	# USER ROUTES
 	get '/websites' => 'user#websites'

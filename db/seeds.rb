@@ -27,5 +27,10 @@ for i in 0..500
 		order_created_at: rand(Time.parse("{2016-12-1}")..Time.parse("{#{Time.now.year}-#{Time.now.month}-#{Time.now.day}}")),
 		website_id: Website.where(user_id: User.where(email: "test@lander8.com").last.id).last.id
 	)
+
+	View.create(
+		website_id: Website.where(user_id: User.where(email: "test@lander8.com").last.id).last.id,
+		created_at: rand(Time.parse("{2016-12-1}")..Time.parse("{#{Time.now.year}-#{Time.now.month}-#{Time.now.day}}"))
+	)	
 end
 
