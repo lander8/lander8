@@ -1,0 +1,58 @@
+AllCops:
+  Include:
+    - Rakefile
+    - config.ru
+    - lib/**/*.rake
+  Exclude:
+    - db/schema.rb
+    - db/seeds.rb
+    - db/migrate/*
+    - test/*
+    - bin/*
+
+# Don't care how long lines are
+Metrics/LineLength:
+  Enabled: false
+
+# Don't care how many lines blocks are
+Metrics/BlockLength:
+  Enabled: false
+
+# Don't care how many lines methods are
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+# Prefer tab indentation
+Style/Tab:
+  Enabled: false
+
+# Don't care about documenting every class
+Style/Documentation:
+  Enabled: false
+
+# Don't care about documenting all methods
+Style/DocumentationMethod:
+  Enabled: false
+
+# Weirdly uses spaces, we prefer tabs
+Style/IndentHash:
+  Enabled: false
+
+# Weirdly uses spaces, we prefer tabs
+Style/IndentationWidth:
+  Enabled: false
+
+# Don't weirdly tab things like 'private'
+Style/AccessModifierIndentation:
+  Enabled: false
+
+# Force use of brackets for arrays of words
+Style/WordArray:
+  EnforcedStyle: "brackets"
+
+# Consistent tabs for parameters
+Style/FirstParameterIndentation:
+  Enabled: false

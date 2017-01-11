@@ -1,18 +1,8 @@
 Rails.application.routes.draw do
+	devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }, controllers: { registrations: 'registrations' }
 
-  devise_for :users, 
-  	:path => '', 
-  	:path_names => {
-  		:sign_in => 'login', 
-  		:sign_out => 'logout', 
-  		:sign_up => 'register'
-  	}, 
-  	:controllers => { 
-  		registrations: 'registrations'
-  	}
-  
-  devise_scope :user do
-	  get "/login" => "devise/sessions#new"
+	devise_scope :user do
+		get '/login' => 'devise/sessions#new'
 	end
 
 	get '/' => 'landing#index'
@@ -24,8 +14,8 @@ Rails.application.routes.draw do
 
 	# INTERNAL ROUTES
 	get '/dashboard' => 'analytics#dashboard'
-	get '/analytics/sales' => 'analytics#salesDataEndpoint'
-	get '/analytics/site-traffic' => 'analytics#siteTrafficEndpoint'
+	get '/analytics/sales' => 'analytics#sales_data_endpoint'
+	get '/analytics/site-traffic' => 'analytics#site_traffic_endpoint'
 
 	post '/report-bug' => 'application#report_bug'
 	post '/send-contact' => 'application#send_contact'
@@ -35,5 +25,4 @@ Rails.application.routes.draw do
 	get '/websites/new' => 'user#new_website'
 	post 'websites/create' => 'user#create_website'
 	get '/settings' => 'user#settings'
-
 end

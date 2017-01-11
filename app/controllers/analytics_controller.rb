@@ -5,39 +5,39 @@ class AnalyticsController < ApplicationController
 		render 'index'
 	end
 
-	def salesDataEndpoint
+	def sales_data_endpoint
 		data = {}
 
 		current_user.websites.each do |website|
 			data[website.name] = {
-				orders: website.orders.map{ |order| 
+				orders: website.orders.map do |order|
 					{
-						order_id: order.website_order_id, 
-						total: order.total, 
-						subtotal: order.subtotal, 
-						tax_total: order.tax_total, 
-						shipping_total: order.shipping_total, 
-						user_id: order.website_user_id, 
+						order_id: order.website_order_id,
+						total: order.total,
+						subtotal: order.subtotal,
+						tax_total: order.tax_total,
+						shipping_total: order.shipping_total,
+						user_id: order.website_user_id,
 						created_at: order.order_created_at
-					} 
-				}
+					}
+				end
 			}
 		end
 
 		render json: data
 	end
 
-	def siteTrafficEndpoint
+	def site_traffic_endpoint
 		data = {}
 
 		current_user.websites.each do |website|
 			data[website.name] = {
-				traffic: website.views.map{ |view| 
+				traffic: website.views.map do |view|
 					{
-						user_id: view.website_user_id, 
+						user_id: view.website_user_id,
 						created_at: view.created_at
-					} 
-				}
+					}
+				end
 			}
 		end
 
@@ -48,11 +48,10 @@ class AnalyticsController < ApplicationController
 	# TODO: make this useful
 	def generate_csv
 		data = CSV.generate do |csv|
-		  csv << ["row", "of", "CSV", "data"]
-		  csv << ["another", "row"]
+		  csv << ['row', 'of', 'CSV', 'data']
+		  csv << ['another', 'row']
 		end
 
-		send_data data, :type=> 'text/csv', :filename => 'your_data.csv'
+		send_data data, type: 'text/csv', filename: 'your_data.csv'
 	end
-
 end

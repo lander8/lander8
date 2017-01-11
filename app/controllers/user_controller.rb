@@ -13,7 +13,7 @@ class UserController < ApplicationController
 		render 'new_website', layout: 'landing'
 	end
 
-	def create_website 
+	def create_website
 		Website.create(
 			name: params[:name],
 			url: params[:url],

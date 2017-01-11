@@ -29,8 +29,9 @@ gem 'httparty'
 gem 'mandrill-api'
 
 group :development, :test do
+	gem 'rubocop'
+	gem 'dotenv-rails'
   gem 'pry'
-  gem 'dotenv-rails'
 end
 
 group :development do

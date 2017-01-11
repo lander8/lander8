@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
 	skip_before_action :verify_authenticity_token
-	before_action :find_website_by_api_key, :except => [:documentation, :tracking_pixel_hit]
+	before_action :find_website_by_api_key, except: [:documentation, :tracking_pixel_hit]
 
 	def order_track
 		o = Order.create(
@@ -14,10 +14,7 @@ class ApiController < ApplicationController
 			website_id: @website.id
 		)
 
-		render json: {
-			order: o
-		},
-		status: 200
+		render json: { order: o }, status: 200
 	end
 
 	def documentation
@@ -34,14 +31,12 @@ class ApiController < ApplicationController
 	end
 
 	private
-		def find_website_by_api_key
-			@website = Website.where(api_key: params[:api_key]).first
 
-			unless @website.present?
-				render :json => {
-					message: "The API key you provided was invalid."
-				},
-				status: 401
-			end
-		end
+	def find_website_by_api_key
+		@website = Website.where(api_key: params[:api_key]).first
+
+		return true if @website.present?
+
+		render json: { message: 'The API key you provided was invalid.' }, status: 401
+	end
 end
