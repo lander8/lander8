@@ -35,6 +35,8 @@ In the root folder, there exists a ```.env.sample``` file with environment varia
 
 * Run ```rubocop -D``` and ensure there are no warnings or errors. If there are, go back an fix the appropriate styling issues
 
+* Follow the [Airbnb Style Guide](https://github.com/airbnb/ruby)
+
 * Make a pull request
 
 ## Production
