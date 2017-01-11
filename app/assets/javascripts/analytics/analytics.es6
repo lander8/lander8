@@ -1,6 +1,6 @@
-//= require jquery
-//= require jquery_ujs
-//= require modals
+//= require jquery.js
+//= require jquery_ujs.js
+//= require modals.js
 //= require contour.min.js
 //= require_tree ./charts/
 
