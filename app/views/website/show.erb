@@ -1,0 +1,21 @@
+<div class="container-fluid" style="margin-top: 100px">
+	<div class="row">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="row">
+						<h3 class="col-xs-12"><%= @website.name %></h3>
+						<hr />
+						<div class="col-xs-12">
+							<p><%= @website.url %></p>
+							<p>API Key: <code><%= @website.api_key %></code></p>
+							<p>Tracking Pixel: 
+								<input value='&lt;img src="<%= "#{request.base_url}/api/tracking/pixel?website_id=#{@website.id}&current_user=YOUR_VISITORS_ID" %>"/&gt;'/>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

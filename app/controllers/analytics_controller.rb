@@ -7,10 +7,11 @@ class AnalyticsController < ApplicationController
 
 	def sales_data_endpoint
 		data = {}
-
 		current_user.websites.each do |website|
+			requested_orders = website.orders.where('orders.created_at > ?', (Time.now - params[:days].to_i.days))
+
 			data[website.name] = {
-				orders: website.orders.map do |order|
+				orders: requested_orders.map { |order|
 					{
 						order_id: order.website_order_id,
 						total: order.total,
@@ -20,7 +21,7 @@ class AnalyticsController < ApplicationController
 						user_id: order.website_user_id,
 						created_at: order.order_created_at
 					}
-				end
+				}
 			}
 		end
 
@@ -31,8 +32,10 @@ class AnalyticsController < ApplicationController
 		data = {}
 
 		current_user.websites.each do |website|
+			requested_days = website.views.where('views.created_at > ?', (Time.now - params[:days].to_i.days))
+
 			data[website.name] = {
-				traffic: website.views.map do |view|
+				traffic: requested_days.map do |view|
 					{
 						user_id: view.website_user_id,
 						created_at: view.created_at

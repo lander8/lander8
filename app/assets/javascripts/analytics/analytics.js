@@ -10,35 +10,46 @@ $(document).ready(function(){
   plotSalesData(30);
 
   $('.sites li').click(function(e){
-    setActiveInGroup(this);
-    window.current_website = $(this).attr("data-website");
-    setActiveInGroup('#salesChartShow');
-    setActiveInGroup('.chart-nav.sales');
-    setActiveInGroup('#sales30day');
-    plotSalesData(30);
+    let that = this;
+    window.current_website = $(that).attr("data-website");
+
+    plotSalesData(30).then(function(){
+      setActiveInGroup(that);
+      setActiveInGroup('#salesChartShow');
+      setActiveInGroup('.chart-nav.sales');
+      setActiveInGroup('#sales30day');
+    })
   })
 
   // -- Sales Click Events -- //
   $('#salesChartShow').click(function(){
-    setActiveInGroup(this);
-    setActiveInGroup('.chart-nav.sales');
-    setActiveInGroup('#sales30day');
-    plotSalesData(30);
+    let that = this;
+    plotSalesData(30).then(function(){
+      setActiveInGroup(that);
+      setActiveInGroup('.chart-nav.sales');
+      setActiveInGroup('#sales30day');
+    })
   });
 
   $('#sales30day').click(function(){
-    setActiveInGroup(this);
-    plotSalesData(30);
+    let that = this;
+    plotSalesData(30).then(function(){
+      setActiveInGroup(that);
+    })
   });
 
   $('#sales7day').click(function(){
-    setActiveInGroup(this);
-    plotSalesData(7);
+    let that = this;
+    plotSalesData(7).then(function(){
+      setActiveInGroup(that);
+    })
   });
 
   $('#sales1day').click(function(){
-    setActiveInGroup(this);
-    plotSalesData(1);
+    let that = this;
+    plotSalesData(1).then(function(){
+      setActiveInGroup(that);
+    })
   });
 
   // -- Conversions Click Events -- //
@@ -50,25 +61,33 @@ $(document).ready(function(){
 
   // -- Site Traffic Click Events -- //
   $('#siteTrafficChartShow').click(function(){
-    setActiveInGroup(this);
-    setActiveInGroup('.chart-nav.site-traffic');
-    setActiveInGroup('#siteTraffic30day');
-    plotSiteTrafficData(30);
+    let that = this;
+    plotSiteTrafficData(30).then(function(){
+      setActiveInGroup(that);
+      setActiveInGroup('.chart-nav.site-traffic');
+      setActiveInGroup('#siteTraffic30day');
+    })
   });
 
   $('#siteTraffic30day').click(function(){
-    setActiveInGroup(this);
-    plotSiteTrafficData(30);
+    let that = this;
+    plotSiteTrafficData(30).then(function(){
+      setActiveInGroup(that);
+    })
   });
 
   $('#siteTraffic7day').click(function(){
-    setActiveInGroup(this);
-    plotSiteTrafficData(7);
+    let that = this;
+    plotSiteTrafficData(7).then(function(){
+      setActiveInGroup(that);
+    })
   });
 
   $('#siteTraffic1day').click(function(){
-    setActiveInGroup(this);
-    plotSiteTrafficData(1);
+    let that = this;
+    plotSiteTrafficData(1).then(function(){
+      setActiveInGroup(that);
+    })
   });
 });
 

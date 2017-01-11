@@ -1,36 +1,22 @@
 function generateSiteTrafficData(number_of_days) {
-  return fetchData('/analytics/site-traffic').then(function(data){
-    var rawData = {};
-
-    // Generate the 30 days
-    for (var i = 0; i < number_of_days; i++) {
-      // Super long string formatting
-      if (number_of_days > 1) {
-        rawData[ (moment().subtract(i, 'days').format().substring(0, moment().subtract(i, 'days').format().indexOf("T"))) ] = 0
-      } else {
-        for (var j = 0; j < 24; j++) {
-          rawData[ (moment().subtract(j, 'hours').format("YYYY-MM-DDTHH:00:00")) ] = 0
-        }
-      }
-    }
+  return fetchData(`/analytics/site-traffic/${number_of_days}`).then(function(data){
+    var rawData = generateEmptyTimeDataArray(number_of_days);
 
     // Loop through all dates in array, add revenue to days that we have data for
     data[current_website].traffic.map(function(view) {
-      if (number_of_days > 1 && view.created_at.substring(0, view.created_at.indexOf("T")) in rawData) {
-        rawData[view.created_at.substring(0, view.created_at.indexOf("T"))]++
+      if (number_of_days > 1 && (moment(view.created_at).format("YYYY-MM-DD")) in rawData) {
+        rawData[moment(view.created_at).format("YYYY-MM-DD")] += 1
       } else if (moment(view.created_at).format("YYYY-MM-DDTHH:00:00") in rawData) {
-        rawData[moment(view.created_at).format("YYYY-MM-DDTHH:00:00")]++
+        rawData[moment(view.created_at).format("YYYY-MM-DDTHH:00:00")] += 1
       }
     })
 
-    return Object.keys(rawData).map(function(key, index) {
-      return {x: new Date(key), y: rawData[key]}
-    }); 
+    return generateChartAxis(rawData); 
   })
 }
 
 function plotSiteTrafficData(number_of_days) {
-  generateSiteTrafficData(number_of_days).then(function(data){
+  return generateSiteTrafficData(number_of_days).then(function(data){
     clearPreviousChart('salesChart');
     try {
       new Contour({
@@ -48,7 +34,7 @@ function plotSiteTrafficData(number_of_days) {
           animate: true,
           distance: 0,
           formatter: function(d) { 
-            return d.y + ' total views on <br>' + moment(d.x).format('dddd, MMMM Do YYYY ( HH:mm )') 
+            return d.y + ' total views on <br>' + (number_of_days > 1 ? moment(d.x).format('dddd, MMMM Do YYYY') : moment(d.x).format('dddd, MMMM Do YYYY LT'))
           }
         },
         line: {

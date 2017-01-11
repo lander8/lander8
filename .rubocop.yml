@@ -56,3 +56,6 @@ Style/WordArray:
 # Consistent tabs for parameters
 Style/FirstParameterIndentation:
   Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: false

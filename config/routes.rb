@@ -14,15 +14,16 @@ Rails.application.routes.draw do
 
 	# INTERNAL ROUTES
 	get '/dashboard' => 'analytics#dashboard'
-	get '/analytics/sales' => 'analytics#sales_data_endpoint'
-	get '/analytics/site-traffic' => 'analytics#site_traffic_endpoint'
+	get '/analytics/sales/:days' => 'analytics#sales_data_endpoint'
+	get '/analytics/site-traffic/:days' => 'analytics#site_traffic_endpoint'
 
 	post '/report-bug' => 'application#report_bug'
 	post '/send-contact' => 'application#send_contact'
 
 	# USER ROUTES
 	get '/websites' => 'user#websites'
-	get '/websites/new' => 'user#new_website'
-	post 'websites/create' => 'user#create_website'
+	get '/websites/new' => 'website#new'
+	get '/websites/:id' => 'website#show'
+	post 'websites/create' => 'website#create'
 	get '/settings' => 'user#settings'
 end
