@@ -1,5 +1,5 @@
 function generateSiteTrafficData(number_of_days) {
-  return fetchData(`/analytics/site-traffic/${number_of_days}`).then(function(data){
+  return fetchData('/analytics/site-traffic/' + number_of_days).then(function(data){
     var rawData = generateEmptyTimeDataArray(number_of_days);
 
     // Loop through all dates in array, add revenue to days that we have data for

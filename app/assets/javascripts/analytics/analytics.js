@@ -10,7 +10,7 @@ $(document).ready(function(){
   plotSalesData(30);
 
   $('.sites li').click(function(e){
-    let that = this;
+    var that = this;
     window.current_website = $(that).attr("data-website");
 
     plotSalesData(30).then(function(){
@@ -23,7 +23,7 @@ $(document).ready(function(){
 
   // -- Sales Click Events -- //
   $('#salesChartShow').click(function(){
-    let that = this;
+    var that = this;
     plotSalesData(30).then(function(){
       setActiveInGroup(that);
       setActiveInGroup('.chart-nav.sales');
@@ -32,21 +32,21 @@ $(document).ready(function(){
   });
 
   $('#sales30day').click(function(){
-    let that = this;
+    var that = this;
     plotSalesData(30).then(function(){
       setActiveInGroup(that);
     })
   });
 
   $('#sales7day').click(function(){
-    let that = this;
+    var that = this;
     plotSalesData(7).then(function(){
       setActiveInGroup(that);
     })
   });
 
   $('#sales1day').click(function(){
-    let that = this;
+    var that = this;
     plotSalesData(1).then(function(){
       setActiveInGroup(that);
     })
@@ -61,7 +61,7 @@ $(document).ready(function(){
 
   // -- Site Traffic Click Events -- //
   $('#siteTrafficChartShow').click(function(){
-    let that = this;
+    var that = this;
     plotSiteTrafficData(30).then(function(){
       setActiveInGroup(that);
       setActiveInGroup('.chart-nav.site-traffic');
@@ -70,21 +70,21 @@ $(document).ready(function(){
   });
 
   $('#siteTraffic30day').click(function(){
-    let that = this;
+    var that = this;
     plotSiteTrafficData(30).then(function(){
       setActiveInGroup(that);
     })
   });
 
   $('#siteTraffic7day').click(function(){
-    let that = this;
+    var that = this;
     plotSiteTrafficData(7).then(function(){
       setActiveInGroup(that);
     })
   });
 
   $('#siteTraffic1day').click(function(){
-    let that = this;
+    var that = this;
     plotSiteTrafficData(1).then(function(){
       setActiveInGroup(that);
     })
