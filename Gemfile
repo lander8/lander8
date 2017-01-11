@@ -12,6 +12,9 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
+# Use babel to precompile es6
+gem 'babel-transpiler'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 

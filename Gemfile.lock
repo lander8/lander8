@@ -40,6 +40,10 @@ GEM
       tzinfo (~> 1.1)
     arel (7.1.4)
     ast (2.3.0)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.11)
     builder (3.2.2)
     coderay (1.1.1)
@@ -186,6 +190,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  babel-transpiler
   devise
   dotenv-rails
   httparty
