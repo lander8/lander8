@@ -22,12 +22,16 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Error logging
 gem 'sentry-raven'
 
+# User authentication
 gem 'devise'
 
+# For API calls
 gem 'httparty'
 
+# Transactional Emails
 gem 'mandrill-api'
 
 group :development, :test do
