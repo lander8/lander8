@@ -59,3 +59,7 @@ All DNS settings are handled through domains.google.com
 * For first time set up, run ```eb init``` and select the appropriate options
 
 * Deploy using ```eb deploy```
+
+### Monitoring and Logs
+
+* Sentry is set up for automatic code monitoring and reporting whenever a user hits an error

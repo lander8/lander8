@@ -1,3 +1,3 @@
 class Order < ApplicationRecord
-	has_one :website
+	belongs_to :website
 end
