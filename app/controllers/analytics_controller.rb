@@ -2,11 +2,12 @@ class AnalyticsController < ApplicationController
 	before_action :authenticate_user!
 
 	def dashboard
+		cuurent_user.coolness_level
 		render 'index'
 	end
 
 	def sales_data_endpoint
-		data = {failme}
+		data = {}
 		current_user.websites.each do |website|
 			requested_orders = website.orders.where('orders.created_at > ?', (Time.now - params[:days].to_i.days))
 
