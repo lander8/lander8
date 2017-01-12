@@ -18,7 +18,11 @@ class ApplicationController < ActionController::Base
 
 	# This is what gets sent to Sentry on errors
 	def set_raven_context
-		Raven.user_context(id: current_user.id || nil, email: current_user.email || nil, ip_address: request.ip)
+		Raven.user_context(
+			id: current_user.present? ? current_user.id : nil,
+			email: current_user.present? ? current_user.email : nil,
+			ip_address: request.ip
+		)
 		Raven.extra_context(params: params.to_unsafe_h, url: request.url)
 	end
 end
