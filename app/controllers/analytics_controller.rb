@@ -2,7 +2,6 @@ class AnalyticsController < ApplicationController
 	before_action :authenticate_user!
 
 	def dashboard
-		cuurent_user.coolness_level
 		render 'index'
 	end
 
