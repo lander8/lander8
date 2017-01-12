@@ -6,7 +6,7 @@ class AnalyticsController < ApplicationController
 	end
 
 	def sales_data_endpoint
-		data = {}
+		data = {failme}
 		current_user.websites.each do |website|
 			requested_orders = website.orders.where('orders.created_at > ?', (Time.now - params[:days].to_i.days))
 
