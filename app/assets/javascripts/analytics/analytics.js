@@ -5,6 +5,21 @@
 //= require_tree ./charts/
 
 $(document).ready(function(){
+  var loadingTimeout;
+  $(".spinner-container").hide();
+  // show spinner on AJAX start
+  $(document).ajaxStart(function(){
+    loadingTimeout = setTimeout(function() {
+      $(".spinner-container").show();
+    }, 500);
+  });
+
+  // hide spinner on AJAX stop
+  $(document).ajaxStop(function(){
+    clearTimeout(loadingTimeout);
+    $(".spinner-container").hide();
+  });
+
   window.current_website = $($('.sites li')[0]).attr("data-website");
 
   plotSalesData(30);
