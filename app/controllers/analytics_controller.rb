@@ -8,7 +8,7 @@ class AnalyticsController < ApplicationController
 	def sales_data_endpoint
 		data = {}
 		current_user.websites.each do |website|
-			requested_orders = website.orders.where('orders.created_at > ?', (Time.now - params[:days].to_i.days))
+			requested_orders = website.orders.where('orders.created_at > ?', (Time.current - params[:days].to_i.days))
 
 			data[website.name] = {
 				orders: requested_orders.map { |order|
@@ -32,7 +32,7 @@ class AnalyticsController < ApplicationController
 		data = {}
 
 		current_user.websites.each do |website|
-			requested_days = website.views.where('views.created_at > ?', (Time.now - params[:days].to_i.days))
+			requested_days = website.views.where('views.created_at > ?', (Time.current - params[:days].to_i.days))
 
 			data[website.name] = {
 				traffic: requested_days.map do |view|
