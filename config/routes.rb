@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
 	# INTERNAL ROUTES
 	get '/dashboard' => 'analytics#dashboard'
-	get '/analytics/sales/:days' => 'analytics#sales_data_endpoint'
-	get '/analytics/site-traffic/:days' => 'analytics#site_traffic_endpoint'
+	get '/analytics/sales/:website/:days' => 'analytics#sales_data_endpoint'
+	get '/analytics/site-traffic/:website/:days' => 'analytics#site_traffic_endpoint'
 
 	post '/report-bug' => 'application#report_bug'
 	post '/send-contact' => 'application#send_contact'

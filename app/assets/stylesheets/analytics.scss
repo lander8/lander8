@@ -73,6 +73,17 @@
 			display: inline-block;
 		}
 	}
+
+	.stats {
+		margin-bottom: 30px;
+		
+		.stat {
+			padding-top: 10px;
+			padding-bottom: 10px;
+			min-height: 150px;
+			border: 1px solid #ddd;
+		}
+	}
 }
 
 .spinner-container {

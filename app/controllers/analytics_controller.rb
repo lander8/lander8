@@ -2,49 +2,58 @@ class AnalyticsController < ApplicationController
 	before_action :authenticate_user!
 
 	def dashboard
+		@stats = {
+			orders_today: current_user.websites.first.orders.where('orders.order_created_at > ?', Time.zone.now.beginning_of_day).count,
+			orders_this_week: current_user.websites.first.orders.where('orders.order_created_at > ?', Time.zone.now.beginning_of_week).count,
+			orders_this_month: current_user.websites.first.orders.where('orders.order_created_at > ?', Time.zone.now.beginning_of_month).count,
+			views_today: current_user.websites.first.views.where('views.created_at > ?', Time.zone.now.beginning_of_day).count,
+			views_this_week: current_user.websites.first.views.where('views.created_at > ?', Time.zone.now.beginning_of_week).count, 
+			views_this_month: current_user.websites.first.views.where('views.created_at > ?', Time.zone.now.beginning_of_month).count,
+		}
+
 		render 'index'
 	end
 
 	def sales_data_endpoint
-		data = {}
-		current_user.websites.each do |website|
-			requested_orders = website.orders.where('orders.created_at > ?', (Time.current - params[:days].to_i.days))
+		# Only fetch the orders we actually need
+		requested_orders = current_user.websites.where(name: params[:website]).last.orders.where('orders.order_created_at > ?', (Time.current - params[:days].to_i.days))
 
-			data[website.name] = {
-				orders: requested_orders.map { |order|
-					{
-						order_id: order.website_order_id,
-						total: order.total,
-						subtotal: order.subtotal,
-						tax_total: order.tax_total,
-						shipping_total: order.shipping_total,
-						user_id: order.website_user_id,
-						created_at: order.order_created_at
-					}
-				}
+		# Create a new hash with a default value of 0
+		if params[:days].to_i > 1
+			orders = ((Date.today - params[:days].to_i.days).to_date..Date.today).map { |date| { date.strftime('%Y-%m-%d') => 0 } }.reduce({}, :merge)
+		
+			requested_orders.each { |order| 
+				orders[order.order_created_at.to_date.strftime('%Y-%m-%d')] += order.total
+			}
+		else
+			orders = (DateTime.now - 1.day).step(DateTime.now,1.to_f/24).map { |date| { date.strftime('%Y-%m-%dT%H:00:00') => 0 } }.reduce({}, :merge)
+			requested_orders.each { |order| 
+				orders[order.order_created_at.to_date.strftime('%Y-%m-%dT%H:00:00')] += order.total
 			}
 		end
 
-		render json: data
+		render json: orders
 	end
 
 	def site_traffic_endpoint
-		data = {}
+		requested_views = current_user.websites.where(name: params[:website]).last.views.where('views.created_at > ?', (Time.current - params[:days].to_i.days))
 
-		current_user.websites.each do |website|
-			requested_days = website.views.where('views.created_at > ?', (Time.current - params[:days].to_i.days))
+		if params[:days].to_i > 1
+			views = ((Date.today - params[:days].to_i.days).to_date..Date.today).map { |date| { date.strftime('%Y-%m-%d') => 0 } }.reduce({}, :merge)
 
-			data[website.name] = {
-				traffic: requested_days.map do |view|
-					{
-						user_id: view.website_user_id,
-						created_at: view.created_at
-					}
-				end
+			requested_views.each { |view|
+				views[view.created_at.to_date.strftime('%Y-%m-%d')] += 1
+			}
+		else
+			views = (DateTime.now - 1.day).step(DateTime.now, 1.to_f/24).map { |date| { date.strftime('%Y-%m-%dT%H:00:00') => 0 } }.reduce({}, :merge)
+
+			requested_views.each { |view|
+				views[view.created_at.to_date.strftime('%Y-%m-%dT%H:00:00')] += 1
 			}
 		end
 
-		render json: data
+		# views.map{k,v| v}.reduce(:+)
+		render json: views
 	end
 
 	# Generates a CSV and sends it to the user
