@@ -44,13 +44,17 @@
 		      </ul>
 	      	<ul class="nav navbar-nav navbar-right">
 	      		<li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_website.name %> <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		          	<li class="dropdown-header"><h1><%= current_user.name %></h1></li>
-		          	<li class="dropdown-header"><p><%= current_user.email %></p></li>
+		          	<li class="dropdown-header"><h1><%= current_website.name %></h1></li>
+		          	<li class="dropdown-header"><p><%= current_user.name %> - <%= current_user.email %></p></li>
+		          	<li role="separator" class="divider"></li>
+		          	<% current_user.websites.each do |website| %>
+		          		<li><a href="/websites/select/<%= website.id %>"><%= website.name %></a></li>
+		          	<% end %>
 		          	<li role="separator" class="divider"></li>
 		            <li><a href="/settings">Settings</a></li>
-		            <li><a href="/websites">Websites</a></li>
+		            <li><a href="/websites">Manage Websites</a></li>
 		            <li><a href="/logout">Logout</a></li>
 		          </ul>
 		        </li>

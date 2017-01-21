@@ -1,7 +1,7 @@
 //= require analytics/charts/helpers
 
 function plotSalesData(number_of_days) {
-  return fetchData('/analytics/sales/' + window.current_website + '/' + number_of_days).then(function(data){
+  return fetchData('/analytics/sales/' + number_of_days).then(function(data){
     return generateChartAxis(data);
   })
   .then(function(data){

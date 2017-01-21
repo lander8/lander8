@@ -1,5 +1,5 @@
 function plotSiteTrafficData(number_of_days) {
-  return fetchData('/analytics/site-traffic/' + window.current_website + '/' + number_of_days).then(function(data){
+  return fetchData('/analytics/site-traffic/' + number_of_days).then(function(data){
     return generateChartAxis(data);
   })
   .then(function(data){

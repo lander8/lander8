@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
 	before_action :set_raven_context
 
+	helper_method :current_website
+
 	def after_sign_in_path_for(*)
 		'/dashboard'
 	end
@@ -14,6 +16,12 @@ class ApplicationController < ActionController::Base
 		AdminMailer.send_contact_email(current_user.id, params['contact-body']).deliver
 	end
 
+	protected
+
+	def current_website
+		session[:current_website].present? ? current_user.websites.find(session[:current_website]) : nil
+	end
+
 	private
 
 	# This is what gets sent to Sentry on errors
@@ -24,5 +32,9 @@ class ApplicationController < ActionController::Base
 			ip_address: request.ip
 		)
 		Raven.extra_context(params: params.to_unsafe_h, url: request.url)
+	end
+
+	def ensure_selected_website!
+		redirect_to '/websites/select' unless current_website.present?
 	end
 end

@@ -20,8 +20,6 @@ $(document).ready(function(){
     $(".spinner-container").hide();
   });
 
-  window.current_website = $($('.sites li')[0]).attr("data-website");
-
   plotSalesData(30);
 
   $('.sites li').click(function(e){
