@@ -43,3 +43,7 @@ for i in 0..500
 	end
 end
 
+Integration.create([
+	{integration_type: "Social Media", name: "Twitter", auth_url: "/auth/twitter", image_url: "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Twitter_2010_logo_-_from_Commons.svg/798px-Twitter_2010_logo_-_from_Commons.svg.png"}
+])
+

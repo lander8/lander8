@@ -16,11 +16,20 @@
 						</div>
 						<div class="col-xs-6">
 							<h3 class="col-xs-12">Active Integrations</h3>
+							<% @website.active_integrations.each do |integration| %>
+								<%= link_to "#{integration.capitalize}", "/auth/#{integration}", :method => :delete %>
+							<% end %>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-xs-12">
 							<h3 class="col-xs-12" style="border-bottom: 1px solid #ddd;">Available Integrations</h3>
+							<% @integrations.each do |integration| %>
+								<a href="<%= integration.auth_url %>" class="col-xs-2 box-with-border">
+									<img src="<%= integration.image_url %>" class="col-xs-12"/>
+									<p class="col-xs-12 text-center" style="margin-top: 20px;"><%= integration.name %></p>
+								</a>
+							<% end %>
 						</div>
 					</div>
 				</div>

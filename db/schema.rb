@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170107184113) do
+ActiveRecord::Schema.define(version: 20170121045059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "integrations", force: :cascade do |t|
+    t.string   "integration_type"
+    t.string   "auth_url"
+    t.string   "name"
+    t.string   "image_url"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "orders", force: :cascade do |t|
     t.float    "total"
@@ -26,6 +35,14 @@ ActiveRecord::Schema.define(version: 20170107184113) do
     t.datetime "updated_at",       null: false
     t.string   "website_order_id"
     t.datetime "order_created_at"
+  end
+
+  create_table "twitter_accounts", force: :cascade do |t|
+    t.integer  "website_id"
+    t.string   "token"
+    t.string   "secret"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
