@@ -10,6 +10,6 @@ class Website < ApplicationRecord
 
 		possible_integrations.each {|integration| integrations << (self.send("#{integration.downcase}_account").nil? ? nil : self.send("#{integration.downcase}_account").class.to_s.split("Account").first.downcase)}
 
-		return integrations.compact!
+		return integrations.compact
 	end
 end
