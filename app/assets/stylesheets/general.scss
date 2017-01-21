@@ -94,3 +94,18 @@ code {
 	background: $blue25;
 	border-radius: 0px;
 }
+
+.box-with-border {
+	border: 1px solid #ddd;
+	padding: 20px 15px;
+}
+
+a.box-with-border {
+	transition: .3s;
+	text-decoration: none;
+}
+
+a.box-with-border:hover {
+	border-color: #ccc;
+	background: #ddd;
+}

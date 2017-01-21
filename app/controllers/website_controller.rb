@@ -19,6 +19,8 @@ class WebsiteController < ApplicationController
 	def show
 		@website = Website.find(params[:id])
 
+		@integrations = Integration.all
+
 		render 'show', layout: 'landing'
 	end
 end

@@ -27,6 +27,11 @@ Rails.application.routes.draw do
 		post '/create' => 'website#create'
 	end
 
+	scope '/auth' do
+		get '/twitter/callback' => 'integration#twitter_callback'
+		delete '/:integration' => 'integration#delete'
+	end
+
 	# Other routes
 	get '/dashboard' => 'analytics#dashboard'
 	get '/settings' => 'user#settings'

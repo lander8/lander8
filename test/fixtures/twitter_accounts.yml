@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  website_id: 1
+  token: MyString
+  secret: MyString
+
+two:
+  website_id: 1
+  token: MyString
+  secret: MyString

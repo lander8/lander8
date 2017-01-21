@@ -34,6 +34,11 @@ gem 'httparty'
 # Transactional Emails
 gem 'mandrill-api'
 
+# Integrations
+gem 'omniauth'
+gem 'twitter'
+gem 'omniauth-twitter'
+
 group :development, :test do
 	gem 'rubocop'
 	gem 'dotenv-rails'
