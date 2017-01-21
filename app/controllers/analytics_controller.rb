@@ -19,7 +19,7 @@ class AnalyticsController < ApplicationController
 
 	def sales_data_endpoint
 		# Only fetch the orders we actually need
-		requested_orders = current_website.orders.where('orders.order_created_at > ?', (Time.current - params[:days].to_i.days))
+		requested_orders = current_website.orders.where('orders.order_created_at > ?', (DateTime.now - params[:days].to_i.days))
 
 		# Create a new hash with a default value of 0
 		if params[:days].to_i > 1
@@ -31,7 +31,7 @@ class AnalyticsController < ApplicationController
 		else
 			orders = (DateTime.now - 1.day).step(DateTime.now, 1.to_f / 24).map { |date| { date.strftime('%Y-%m-%dT%H:00:00') => 0 } }.reduce({}, :merge)
 			requested_orders.each { |order|
-				orders[order.order_created_at.to_date.strftime('%Y-%m-%dT%H:00:00')] += order.total
+				orders[order.order_created_at.to_datetime.strftime('%Y-%m-%dT%H:00:00')] += order.total
 			}
 		end
 
@@ -51,7 +51,7 @@ class AnalyticsController < ApplicationController
 			views = (DateTime.now - 1.day).step(DateTime.now, 1.to_f / 24).map { |date| { date.strftime('%Y-%m-%dT%H:00:00') => 0 } }.reduce({}, :merge)
 
 			requested_views.each { |view|
-				views[view.created_at.to_date.strftime('%Y-%m-%dT%H:00:00')] += 1
+				views[view.created_at.to_datetime.strftime('%Y-%m-%dT%H:00:00')] += 1
 			}
 		end
 
