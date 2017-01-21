@@ -6,14 +6,22 @@
 					<div class="row">
 						<h3 class="col-xs-12">Your Websites</h3>
 						<div class="col-xs-12">
-							<% current_user.websites.each do |website| %>
-								<hr />
-								<a href="/websites/<%= website.id %>"><%= website.name %></a>
-								<p><%= website.url %></p>
-								<p>API Key: <code><%= website.api_key %></code></p>
-								<p>Tracking Pixel: 
-									<input value='&lt;img src="<%= "#{request.base_url}/api/tracking/pixel?website_id=#{website.id}&current_user=YOUR_VISITORS_ID" %>"/&gt;'/>
+							<% if current_user.websites.count == 0 %>
+								<p> 
+									Looks like you don't have any websites yet. 
+									In order to use lander8 and our tools, you must integrate a website. 
+									Please <a href="/websites/new">add one here.</a>
 								</p>
+							<% else %>
+								<% current_user.websites.each do |website| %>
+									<hr />
+									<a href="/websites/<%= website.id %>"><%= website.name %></a>
+									<p><%= website.url %></p>
+									<p>API Key: <code><%= website.api_key %></code></p>
+									<p>Tracking Pixel: 
+										<input value='&lt;img src="<%= "#{request.base_url}/api/tracking/pixel?website_id=#{website.id}&current_user=YOUR_VISITORS_ID" %>"/&gt;'/>
+									</p>
+								<% end %>
 							<% end %>
 						</div>
 					</div>

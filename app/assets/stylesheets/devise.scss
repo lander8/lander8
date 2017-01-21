@@ -100,3 +100,18 @@
 		}
 	}
 }
+
+.website-select-option {
+	padding: 20px 15px;
+	border: 1px solid #eee;
+	margin-bottom: 10px;
+	text-decoration: none;
+	transition: .3s;
+}
+
+.website-select-option:hover {
+	border-color: #ddd;
+	background: #eee;
+	text-decoration: none;
+}
+

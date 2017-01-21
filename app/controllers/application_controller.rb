@@ -35,6 +35,14 @@ class ApplicationController < ActionController::Base
 	end
 
 	def ensure_selected_website!
-		redirect_to '/websites/select' unless current_website.present?
+		return true if current_website.present?
+
+		if current_user.websites.count == 1
+			session[:current_website] = current_user.websites.first.id
+		elsif current_user.websites.count == 0
+			redirect_to '/websites'
+		else
+			redirect_to '/websites/select' 
+		end
 	end
 end

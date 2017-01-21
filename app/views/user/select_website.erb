@@ -1,3 +1,12 @@
-<% current_user.websites.each do |website| %>
-	<a href="/websites/select/<%= website.id %>"><%= website.name %></a>
-<% end %>
+<div class="container" style="margin-top: 100px;">
+	<div class="col-xs-6 col-xs-offset-3">
+		<div class="row">
+			<h3 class="col-xs-12">
+				Please select a website to analyze:
+			</h3>
+		</div>
+		<% current_user.websites.each do |website| %>
+			<a href="/websites/select/<%= website.id %>" class="col-xs-12 website-select-option"><%= website.name %></a>
+		<% end %>
+	</div>
+</div>

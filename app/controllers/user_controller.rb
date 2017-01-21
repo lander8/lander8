@@ -11,7 +11,7 @@ class UserController < ApplicationController
 
 	# Which website is the user currently acting as?
 	def select_website
-		render 'select_website', layout: false
+		render 'select_website', layout: 'landing'
 	end
 
 	# Set the session variable for current website
