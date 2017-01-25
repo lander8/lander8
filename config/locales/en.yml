@@ -3,10 +3,10 @@ en:
     landing:
       section_one:
         header: "Scalable Analytics Built for Businesses"
-        sub_header: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla quam vitae lobortis rhoncus. Fusce ac lectus vehicula, ullamcorper justo maximus, volutpat lorem. Fusce pellentesque, leo sed maximus feugiat, tellus risus ultricies ante, molestie consectetur libero tellus ut sapien."
+        sub_header: "Lander8 offers an easy and in-depth solution for businesses serious about building their user base. Using our powerful analytics tools, you close the gap between a customer's last interaction and their next purchase."
       section_two:
-        header: "Hello."
-        sub_header: ""
+        header: "Business, Meet Your Consumer Base"
+        sub_header: "Using lander8 user tracking, you can know your consumers without ever meeting them."
     documentation:
       page_header: "Documentation"
       page_description: "Lander8 is a scalable analytics tool built for businesses. We make it easy to measure and stay on top of your business' analytics and provide a solution that is easy to integrate while still being relatively powerful. Here's how you can get started:"
